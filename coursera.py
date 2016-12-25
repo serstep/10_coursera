@@ -38,13 +38,13 @@ def get_course_info(course_url):
     response = requests.get(course_url)
     course_page = BeautifulSoup(response.content, "html.parser")
 
-    name = course_page.find("div", class_="title").text
+    course_name = course_page.find("div", class_="title").text
     course_language = course_page.find("div", class_="language-info").text
     course_start_date = get_course_start_data(course_page)
     number_of_weeks = len(course_page.find_all("div", class_="week"))
     course_rate = get_course_rate(course_page)
     
-    return [name, course_language, course_start_date, number_of_weeks, course_rate]
+    return [course_name, course_language, course_start_date, number_of_weeks, course_rate]
 
 
 def get_all_courses_info(required_number):
