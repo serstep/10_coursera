@@ -13,6 +13,3 @@ Types of gathering information:
     $python3 coursera.py filepath
 where filepath is name of file which will contain xls table. Be careful with file naming, if file already exists, it will be overwrited with new data.
 
-##Possible exceptions:
-
-If script couldn't get some data from resource, you may see unfilled cells in table.
