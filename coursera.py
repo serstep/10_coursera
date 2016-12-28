@@ -44,7 +44,7 @@ def get_course_info(course_url):
     number_of_weeks = len(course_page.find_all("div", class_="week"))
     course_rate = get_course_rate(course_page)
     
-    return [course_name, course_language, course_start_date, number_of_weeks, course_rate]
+    return (course_name, course_language, course_start_date, number_of_weeks, course_rate)
 
 
 def get_all_courses_info(required_number):
@@ -61,13 +61,15 @@ def get_all_courses_info(required_number):
 def output_courses_info_to_xlsx(filepath, courses_info):
     workbook = openpyxl.Workbook()
     worksheet = workbook.active
+    first_info_row = 2
+
     worksheet.cell(row=1, column=1, value="Name")
     worksheet.cell(row=1, column=2, value="Language")
     worksheet.cell(row=1, column=3, value="Start date")
     worksheet.cell(row=1, column=4, value="Number of weeks")
     worksheet.cell(row=1, column=5, value="Rate")
 
-    for course_number, course_info in enumerate(courses_info, start=2):
+    for course_number, course_info in enumerate(courses_info, start=first_info_row):
         for property_number, course_property in enumerate(course_info, start=1):
             worksheet.cell(row=course_number, column=property_number, value=course_property)
 
